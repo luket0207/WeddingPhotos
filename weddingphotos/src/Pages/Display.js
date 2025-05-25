@@ -6,19 +6,19 @@ const Display = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/list-wedding-images')
-      .then(res => {
+    async function fetchImages() {
+      try {
+        const res = await fetch('/api/list-wedding-images');  // or full URL if needed
         if (!res.ok) throw new Error('Network response was not ok');
-        return res.json();
-      })
-      .then(data => {
+        const data = await res.json();
         setImages(data.images);
-        setLoading(false);
-      })
-      .catch(err => {
+      } catch (err) {
         setError(err.message);
+      } finally {
         setLoading(false);
-      });
+      }
+    }
+    fetchImages();
   }, []);
 
   if (loading) return <p>Loading images...</p>;

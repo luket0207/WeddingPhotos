@@ -1,4 +1,3 @@
-// /api/wedding-images.js
 const cloudinary = require('cloudinary').v2;
 
 cloudinary.config({
@@ -8,12 +7,14 @@ cloudinary.config({
 });
 
 module.exports = async (req, res) => {
+  console.log("Function invoked");
   try {
     const result = await cloudinary.api.resources({
       type: 'upload',
       prefix: 'Wedding/',
       max_results: 100,
     });
+    console.log("Cloudinary result:", result);
 
     const images = result.resources.map(img => img.secure_url);
     res.status(200).json({ images });
