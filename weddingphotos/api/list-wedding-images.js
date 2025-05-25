@@ -6,7 +6,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   try {
     const result = await cloudinary.api.resources({
       type: 'upload',
@@ -20,4 +20,4 @@ module.exports = async (req, res) => {
     console.error('Error fetching images:', error);
     res.status(500).json({ error: 'Failed to fetch images' });
   }
-};
+}
