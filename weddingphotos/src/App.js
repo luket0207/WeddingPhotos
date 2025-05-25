@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Upload from './Pages/Upload/Upload';
-import Display from './Pages/Display/Display';
+import Upload from './Pages/Upload';
+import Display from './Pages/Display';
 
 function App() {
   return (
