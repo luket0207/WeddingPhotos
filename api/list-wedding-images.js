@@ -10,9 +10,11 @@ module.exports = async (req, res) => {
   try {
     const result = await cloudinary.api.resources({
       type: 'upload',
-      prefix: 'Wedding/',
+      prefix: 'Wedding/', // ensure this matches your folder name with slash
       max_results: 100,
     });
+
+    console.log('Cloudinary API response:', result); // Add this
 
     const images = result.resources.map(img => img.secure_url);
     res.status(200).json({ images });
@@ -21,3 +23,4 @@ module.exports = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch images' });
   }
 };
+
