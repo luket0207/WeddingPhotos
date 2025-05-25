@@ -10,12 +10,11 @@ module.exports = async (req, res) => {
   try {
     const result = await cloudinary.api.resources({
       type: 'upload',
-      prefix: 'Wedding/',  // your folder in Cloudinary
+      prefix: 'Wedding/',
       max_results: 100,
     });
 
     const images = result.resources.map(img => img.secure_url);
-
     res.status(200).json({ images });
   } catch (error) {
     console.error('Error fetching images:', error);
